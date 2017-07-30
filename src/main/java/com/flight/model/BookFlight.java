@@ -29,4 +29,9 @@ public class BookFlight {
 		this.flight = flight;
 	}
 
+	@Override
+	public String toString() {
+		return "BookFlight [flight=" + flight + ", totalCost=" + totalCost + "]";
+	}
+
 }

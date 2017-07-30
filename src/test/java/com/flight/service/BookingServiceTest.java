@@ -84,9 +84,10 @@ public class BookingServiceTest {
 				destinationAirportCode, passangerList);
 
 		Assert.assertNotNull("No se encontro vuelo", flightsFound);
-		Assert.assertNotEquals("Number of flights", 3, flightsFound.size());
+		Assert.assertEquals("Number of flights", 3, flightsFound.size());
 
 		for (BookFlight bookFlight : flightsFound) {
+			System.out.println(bookFlight);
 			Assert.assertNotNull("No se encontro destino", bookFlight.getFlight());
 			Assert.assertNotNull("No se encontro costo total", bookFlight.getTotalCost());
 		}
