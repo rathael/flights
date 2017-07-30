@@ -1,12 +1,12 @@
 package com.flight.enums;
 
 /**
- * Type of passanger
+ * Type of passenger
  * 
  * @author alex
  *
  */
-public enum PassangerType {
+public enum PassengerType {
 
 	/**
 	 * Older than 18 years old (for example)

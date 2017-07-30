@@ -13,7 +13,7 @@ public class Airline {
 	/**
 	 * IATA Code
 	 */
-	private String iataCode;
+	private String code;
 	
 	/**
 	 * Name of the airline
@@ -27,21 +27,29 @@ public class Airline {
 	
 	public Airline(String iataCode, String name, BigDecimal infantPrice) {
 		super();
-		this.iataCode = iataCode;
+		this.code = iataCode;
 		this.name = name;
 		this.infantPrice = infantPrice;
+	}
+	
+	public Airline(String iataCode, String name, int infantPrice) {
+		this(iataCode, name, new BigDecimal(infantPrice));
+	}
+	
+	public Airline(String iataCode, String name, double infantPrice) {
+		this(iataCode, name, new BigDecimal(infantPrice));
 	}
 
 	/**
 	 * IATA Code
 	 * @return
 	 */
-	public String getIataCode() {
-		return iataCode;
+	public String getCode() {
+		return code;
 	}
 
-	public void setIataCode(String iataCode) {
-		this.iataCode = iataCode;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	/**
@@ -66,6 +74,11 @@ public class Airline {
 
 	public void setInfantPrice(BigDecimal infantPrice) {
 		this.infantPrice = infantPrice;
+	}
+
+	@Override
+	public String toString() {
+		return "Airline [code=" + code + ", name=" + name + "]";
 	}
 	
 	

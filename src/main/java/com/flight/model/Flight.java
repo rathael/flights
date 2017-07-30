@@ -11,6 +11,11 @@ import java.math.BigDecimal;
 public class Flight {
 
 	/**
+	 * Flight code
+	 */
+	private String code;
+	
+	/**
 	 * Airport origin
 	 */
 	private Airport origin;
@@ -30,14 +35,30 @@ public class Flight {
 	 */
 	private BigDecimal basePrice;
 
-	public Flight(Airport origin, Airport destination, Airline airline, BigDecimal basePrice) {
+	/**
+	 * 
+	 * @param origin
+	 * @param destination
+	 * @param airline
+	 * @param basePrice
+	 */
+	public Flight(String code, Airport origin, Airport destination, Airline airline, BigDecimal basePrice) {
 		super();
+		this.code = code;
 		this.origin = origin;
 		this.destination = destination;
 		this.airline = airline;
 		this.basePrice = basePrice;
 	}
+	
+	public Flight(String code, Airport origin, Airport destination, Airline airline, int basePrice) {
+		this(code, origin, destination, airline, new BigDecimal(basePrice));
+	}
 
+	public Flight(String code, Airport origin, Airport destination, Airline airline, String basePrice) {
+		this(code, origin, destination, airline, new BigDecimal(basePrice));
+	}
+	
 	public Airport getOrigin() {
 		return origin;
 	}
@@ -74,5 +95,13 @@ public class Flight {
 	public String toString() {
 		return "Flight [origin=" + origin + ", destination=" + destination + ", airline=" + airline + ", basePrice="
 				+ basePrice + "]";
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 }

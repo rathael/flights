@@ -1,5 +1,9 @@
 package com.flight.model;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Airport Info
  * 
@@ -11,7 +15,7 @@ public class Airport {
 	/**
 	 * IATA Code
 	 */
-	private String iataCode;
+	private String code;
 
 	/**
 	 * Name of the airport
@@ -19,13 +23,18 @@ public class Airport {
 	private String name;
 
 	/**
+	 * Destination airports from this airport
+	 */
+	private Map<Airport, List<Flight>> flightsTo = new HashMap<>();
+	
+	/**
 	 * 
 	 * @param iATACode
 	 * @param name
 	 */
-	public Airport(String iataCode, String name) {
+	public Airport(String code, String name) {
 		super();
-		this.iataCode = iataCode;
+		this.code = code;
 		this.name = name;
 	}
 
@@ -34,12 +43,12 @@ public class Airport {
 	 * 
 	 * @return
 	 */
-	public String getIataCode() {
-		return iataCode;
+	public String getCode() {
+		return code;
 	}
 
-	public void setIataCode(String iataCode) {
-		this.iataCode = iataCode;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	/**
@@ -53,5 +62,18 @@ public class Airport {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "Airport [code=" + code + ", name=" + name + "]";
+	}
+
+	public Map<Airport, List<Flight>> getFlightsTo() {
+		return flightsTo;
+	}
+
+	public void setFlightsTo(Map<Airport, List<Flight>> flightsTo) {
+		this.flightsTo = flightsTo;
 	}
 }
