@@ -1,6 +1,7 @@
 package com.flight.service;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -50,8 +51,6 @@ public class BookingServiceTest {
 
 	@Before
 	public void before() {
-
-
 		bookingService = new BookingService();
 		bookingService.setAirportService(airportService);
 	}
@@ -83,13 +82,31 @@ public class BookingServiceTest {
 		List<BookFlight> flightsFound = bookingService.findFlights(departureDate, originAirportCode,
 				destinationAirportCode, passangerList);
 
-		Assert.assertNotNull("No se encontro vuelo", flightsFound);
+		Assert.assertNotNull("Flights not found", flightsFound);
 		Assert.assertEquals("Number of flights", 3, flightsFound.size());
 
 		for (BookFlight bookFlight : flightsFound) {
 			System.out.println(bookFlight);
 			Assert.assertNotNull("No se encontro destino", bookFlight.getFlight());
 			Assert.assertNotNull("No se encontro costo total", bookFlight.getTotalCost());
+			
+			String expectedCode = null;
+			BigDecimal expectedTotalCost = null;
+			if ("LH5909".equals(bookFlight.getFlight().getCode())) {
+				expectedCode = "LH5909";
+				expectedTotalCost = BigDecimal.valueOf(90.4);
+			} else if ("TK2659".equals(bookFlight.getFlight().getCode())) {
+				expectedCode = "TK2659";
+				expectedTotalCost = BigDecimal.valueOf(198.4);
+			} else if ("TK2372".equals(bookFlight.getFlight().getCode())) {
+				expectedCode = "TK2372";
+				expectedTotalCost = BigDecimal.valueOf(157.6);
+			} else {
+				Assert.fail("Flight code not valid");
+			}
+			
+			Assert.assertEquals("Flight code not valid", expectedCode, bookFlight.getFlight().getCode());
+			Assert.assertEquals("Flight cost not valid", expectedTotalCost, bookFlight.getTotalCost());
 		}
 
 	}

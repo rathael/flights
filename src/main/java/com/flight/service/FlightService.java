@@ -71,7 +71,6 @@ public class FlightService {
 		if (origin == null) {
 			throw new IllegalArgumentException("Origin airport not valid");
 		}
-		;
 
 		if (destination == null) {
 			throw new IllegalArgumentException("Destination airport not valid");

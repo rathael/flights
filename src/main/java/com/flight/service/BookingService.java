@@ -19,8 +19,6 @@ public class BookingService {
 		
 	}
 	
-
-	
 	public List<BookFlight> findFlights(Date departureDate, String originAirportCode, String destinationAirportCode,
 			List<Passenger> passangerList) throws FlightNotFoundException {
 

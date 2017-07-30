@@ -2,9 +2,6 @@ package com.flight.service;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.junit.Assert;
@@ -12,10 +9,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.flight.enums.PassengerType;
 import com.flight.model.Flight;
-import com.flight.model.BookFlight;
-import com.flight.model.Passenger;
 
 /**
  * Test of {@link FlightService}
@@ -23,7 +17,7 @@ import com.flight.model.Passenger;
  * @author alex
  *
  */
-public class FlightSearchServiceTest {
+public class FlightServiceTest {
 
 	private FlightService flightSearchService;
 
