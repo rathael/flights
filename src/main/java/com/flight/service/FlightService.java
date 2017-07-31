@@ -15,7 +15,7 @@ import com.flight.model.Airport;
 import com.flight.model.Flight;
 
 /**
- * Flight search service
+ * Flight service
  * 
  * @author alex
  *
@@ -32,6 +32,9 @@ public class FlightService {
 	 */
 	private AirlineService airlineService;
 
+	/**
+	 * Airport Service
+	 */
 	private AirportService airportService;
 
 	public FlightService() {
@@ -65,6 +68,16 @@ public class FlightService {
 		this.database = database;
 	}
 
+	/**
+	 * Create a Flight object
+	 * 
+	 * @param code
+	 * @param originAirportCode
+	 * @param destinationAirportCode
+	 * @param airlineCode
+	 * @param basePrice
+	 * @return
+	 */
 	public Flight createFlight(String code, String originAirportCode, String destinationAirportCode, String airlineCode,
 			String basePrice) {
 		Airport origin = airportService.getAirport(originAirportCode);
@@ -86,10 +99,19 @@ public class FlightService {
 		return new Flight(code, origin, destination, airline, basePrice);
 	}
 
+	/**
+	 * Load data flights from file
+	 * @param file
+	 */
 	public void loadDataFromfile(File file) {
 		loadData(readDataFromFile(file));
 	}
 
+	/**
+	 * Read flights from file
+	 * @param file
+	 * @return
+	 */
 	public List<Flight> readDataFromFile(File file) {
 		List<Flight> flightList = new ArrayList<>();
 
@@ -121,10 +143,10 @@ public class FlightService {
 				}
 			}
 		}
-		
+
 		return flightList;
 	}
-	
+
 	public AirlineService getAirlineService() {
 		return airlineService;
 	}

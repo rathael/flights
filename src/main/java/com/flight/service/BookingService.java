@@ -15,8 +15,17 @@ import com.flight.model.BookFlight;
 import com.flight.model.Flight;
 import com.flight.model.Passenger;
 
+/**
+ * Main logic of the search of flights
+ * 
+ * @author alex
+ *
+ */
 public class BookingService {
 
+	/**
+	 * Provides airports information
+	 */
 	private AirportService airportService;
 
 	public BookingService() {
@@ -59,6 +68,15 @@ public class BookingService {
 		return bookFlightList;
 	}
 
+	/**
+	 * Calculate the flight cost per passenger
+	 * 
+	 * @param flight
+	 * @param departureDate
+	 * @param passangerList
+	 * @return
+	 * @throws DepartureDateNotValid
+	 */
 	public Float calculateFlightCost(Flight flight, Date departureDate, List<Passenger> passangerList)
 			throws DepartureDateNotValid {
 		Float flightCost = 0f;
@@ -67,16 +85,18 @@ public class BookingService {
 
 		for (Passenger passenger : passangerList) {
 			Float flightCostPerPassenger = costPerPassengerType(flight, passenger.getType(), rateByDepartureDate);
-			
+
 			flightCost += flightCostPerPassenger;
 		}
-		
+
 		flightCost = new BigDecimal(flightCost).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
 
 		return flightCost;
 	}
 
 	/**
+	 * Calculate the rate (discount) per passenger type
+	 * <p>
 	 * | passenger type | price |<br>
 	 * |----------------|------------------------------------------------------------------------------------------------|<br>
 	 * | adult | full price (i.e. price resulting from the *days to departure
@@ -109,6 +129,14 @@ public class BookingService {
 		return rate;
 	}
 
+	/**
+	 * Calculate the flight cost per passenger type
+	 * 
+	 * @param flight
+	 * @param passengerType
+	 * @param rateByDepartureDate
+	 * @return
+	 */
 	public Float costPerPassengerType(Flight flight, PassengerType passengerType, Float rateByDepartureDate) {
 		Float cost = null;
 

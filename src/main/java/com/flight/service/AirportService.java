@@ -88,6 +88,11 @@ public class AirportService {
 		this.airports = airports;
 	}
 
+	/**
+	 * Load airports from flights and create the airport connections
+	 * 
+	 * @param flights
+	 */
 	public void loadFromFlights(List<Flight> flights) {
 
 		// Create Airport List used in flights
