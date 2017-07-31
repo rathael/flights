@@ -27,6 +27,9 @@ public class FlightService {
 	 */
 	private Map<String, Flight> database = new HashMap<>();
 
+	/**
+	 * Airline Service
+	 */
 	private AirlineService airlineService;
 
 	private AirportService airportService;
