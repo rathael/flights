@@ -72,6 +72,13 @@ public class BookingServiceTest {
 	@Test
 	public void searchFlightTest1() throws FlightNotFoundException, DepartureDateNotValid {
 
+		System.out.println("Running searchFlightTest1 -->");
+		System.out.println("1 adult, 31 days to the departure date, flying AMS -> FRA");
+		System.out.println("flights expected:");
+		System.out.println("TK2372, 157.6 €");
+		System.out.println("TK2659, 198.4 €");
+		System.out.println("LH5909, 90.4 €");
+		
 		Date departureDate = getDepartureDate(31);
 		String originAirportCode = "AMS";
 		String destinationAirportCode = "FRA";
@@ -84,6 +91,8 @@ public class BookingServiceTest {
 		Assert.assertNotNull("Flights not found", flightsFound);
 		Assert.assertEquals("Number of flights", 3, flightsFound.size());
 
+		System.out.println("Test results: ");
+		
 		for (BookFlight bookFlight : flightsFound) {
 			System.out.println(bookFlight.getFlight().getCode() + ", " + bookFlight.getTotalCost() + " €");
 			Assert.assertNotNull("No se encontro destino", bookFlight.getFlight());
@@ -109,6 +118,7 @@ public class BookingServiceTest {
 					bookFlight.getTotalCost());
 		}
 
+		System.out.println("Finish searchFlightTest1 <--");
 	}
 
 	/**
@@ -127,6 +137,12 @@ public class BookingServiceTest {
 	@Test
 	public void searchFlightTest2() throws FlightNotFoundException, DepartureDateNotValid {
 
+		System.out.println("Running searchFlightTest2 -->");
+		System.out.println("2 adults, 1 child, 1 infant, 15 days to the departure date, flying LHR -> IST");
+		System.out.println("flights expected:");
+		System.out.println("TK8891, 806 € (2 * (120% of 250) + 67% of (120% of 250) + 5)");
+		System.out.println("LH1085, 481.19 € (2 * (120% of 148) + 67% of (120% of 148) + 7)");
+		
 		Date departureDate = getDepartureDate(15);
 		String originAirportCode = "LHR";
 		String destinationAirportCode = "IST";
@@ -142,6 +158,8 @@ public class BookingServiceTest {
 		Assert.assertNotNull("Flights not found", flightsFound);
 		Assert.assertEquals("Number of flights", 2, flightsFound.size());
 
+		System.out.println("Test results: ");
+		
 		for (BookFlight bookFlight : flightsFound) {
 			System.out.println(bookFlight.getFlight().getCode() + ", " + bookFlight.getTotalCost() + " €");
 			Assert.assertNotNull("No se encontro destino", bookFlight.getFlight());
@@ -164,6 +182,7 @@ public class BookingServiceTest {
 					bookFlight.getTotalCost());
 		}
 
+		System.out.println("Finish searchFlightTest2 <--");
 	}
 
 	/**
@@ -181,6 +200,12 @@ public class BookingServiceTest {
 	@Test
 	public void searchFlightTest3() throws FlightNotFoundException, DepartureDateNotValid {
 
+		System.out.println("Running searchFlightTest3 -->");
+		System.out.println("1 adult, 2 children, 2 days to the departure date, flying BCN -> MAD");
+		System.out.println("flights expected:");
+		System.out.println("IB2171, 909.09 € (150% of 259 + 2 * 67% of (150% of 259))");
+		System.out.println("LH5496, 1028.43 € (150% of 293 + 2 * 67% of (150% of 293))");
+		
 		Date departureDate = getDepartureDate(2);
 		String originAirportCode = "BCN";
 		String destinationAirportCode = "MAD";
@@ -195,6 +220,8 @@ public class BookingServiceTest {
 		Assert.assertNotNull("Flights not found", flightsFound);
 		Assert.assertEquals("Number of flights", 2, flightsFound.size());
 
+		System.out.println("Test results: ");
+		
 		for (BookFlight bookFlight : flightsFound) {
 			System.out.println(bookFlight.getFlight().getCode() + ", " + bookFlight.getTotalCost() + " €");
 			Assert.assertNotNull("No se encontro destino", bookFlight.getFlight());
@@ -217,6 +244,7 @@ public class BookingServiceTest {
 					bookFlight.getTotalCost());
 		}
 
+		System.out.println("Finish searchFlightTest3 <--");
 	}
 
 	/**
@@ -230,6 +258,11 @@ public class BookingServiceTest {
 	@Test
 	public void searchFlightTest4() throws DepartureDateNotValid {
 
+		System.out.println("Running searchFlightTest4 -->");
+		System.out.println("CDG -> FRA");
+		System.out.println("flights expected:");
+		System.out.println("no flights available");
+		
 		Date departureDate = getDepartureDate(2);
 		String originAirportCode = "CDG";
 		String destinationAirportCode = "FRA";
@@ -244,6 +277,8 @@ public class BookingServiceTest {
 			Assert.fail("No flights expected");
 		} catch (FlightNotFoundException e) {
 			// do nothing
+			System.out.println("Test results: ");
+			System.out.println(e.getMessage());
 		}
 
 	}

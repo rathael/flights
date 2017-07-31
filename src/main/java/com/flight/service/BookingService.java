@@ -46,7 +46,7 @@ public class BookingService {
 		List<Flight> flights = origin.getFlightsTo().get(destination);
 
 		if (flights == null || flights.size() == 0) {
-			throw new FlightNotFoundException();
+			throw new FlightNotFoundException("No flights available");
 		}
 
 		for (Flight flight : flights) {
