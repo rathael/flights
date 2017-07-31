@@ -15,6 +15,7 @@ import org.junit.Test;
 import com.flight.enums.PassengerType;
 import com.flight.exceptions.DepartureDateNotValid;
 import com.flight.exceptions.FlightNotFoundException;
+import com.flight.model.Airline;
 import com.flight.model.BookFlight;
 import com.flight.model.Flight;
 import com.flight.model.Passenger;
@@ -247,6 +248,12 @@ public class BookingServiceTest {
 
 	}
 
+	/**
+	 * Create a departure date for testing
+	 * 
+	 * @param days
+	 * @return
+	 */
 	private Date getDepartureDate(int days) {
 		Calendar departureDate = new GregorianCalendar();
 		departureDate.add(Calendar.DAY_OF_MONTH, days);
@@ -329,4 +336,51 @@ public class BookingServiceTest {
 
 	}
 
+	/**
+	 * 
+	 */
+	@Test
+	public void calculateRateByPassengerTypeTest(){
+		Float rate = null;
+		
+		rate = bookingService.calculateRateByPassengerType(PassengerType.ADULT);
+		Assert.assertEquals("Rate not valid", 1f, rate, 0.01);
+		
+		rate = bookingService.calculateRateByPassengerType(PassengerType.CHILD);
+		Assert.assertEquals("Rate not valid", 0.67f, rate, 0.01);
+		
+		rate = bookingService.calculateRateByPassengerType(PassengerType.INFANT);
+		Assert.assertEquals("Rate not valid", 1F, rate, 0.01);
+	}
+	
+	/**
+	 * 
+	 */
+	@Test
+	public void costPerPassengerTypeTest(){
+		Airline airline = new Airline(null, null, 10);
+		Flight flight = new Flight(null, null, null, airline, 50);
+		Float rateByDepartureDate = 1f;
+		Float cost = null;
+		
+		// Adult
+		cost = bookingService.costPerPassengerType(flight, PassengerType.ADULT, rateByDepartureDate);
+		
+		Assert.assertNotNull("Cost is null", cost);
+		Assert.assertEquals("Cost not valid", flight.getBasePrice(), cost, 0.01);
+		
+		// Child
+		cost = bookingService.costPerPassengerType(flight, PassengerType.CHILD, rateByDepartureDate);
+		
+		Assert.assertNotNull("Cost is null", cost);
+		Assert.assertEquals("Cost not valid", flight.getBasePrice() * 0.67, cost, 0.01);
+		
+		// Infant
+		cost = bookingService.costPerPassengerType(flight, PassengerType.INFANT, rateByDepartureDate);
+		
+		Assert.assertNotNull("Cost is null", cost);
+		Assert.assertEquals("Cost not valid", airline.getInfantPrice(), cost, 0.01);
+		
+	}
+	
 }

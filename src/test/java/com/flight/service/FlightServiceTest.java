@@ -19,7 +19,7 @@ import com.flight.model.Flight;
  */
 public class FlightServiceTest {
 
-	private FlightService flightSearchService;
+	private FlightService flightService;
 
 	private static AirportService airportService;
 
@@ -33,9 +33,9 @@ public class FlightServiceTest {
 
 	@Before
 	public void before() {
-		flightSearchService = new FlightService();
-		flightSearchService.setAirlineService(airlineService);
-		flightSearchService.setAirportService(airportService);
+		flightService = new FlightService();
+		flightService.setAirlineService(airlineService);
+		flightService.setAirportService(airportService);
 	}
 
 	/**
@@ -54,13 +54,13 @@ public class FlightServiceTest {
 				airlineService.getAirline("IB"), 295);
 		flightList.add(flight);
 
-		flightSearchService.loadData(flightList);
+		flightService.loadData(flightList);
 
-		for (Flight item : flightSearchService.getDatabase().values()) {
+		for (Flight item : flightService.getDatabase().values()) {
 			System.out.println(item);
 		}
 
-		Assert.assertEquals("Tamaño de datos", flightList.size(), flightSearchService.getDatabase().keySet().size());
+		Assert.assertEquals("Size of list", flightList.size(), flightService.getDatabase().keySet().size());
 
 	}
 
@@ -72,13 +72,13 @@ public class FlightServiceTest {
 		String filename = "/flights.csv";
 		File file = new File(this.getClass().getResource(filename).getFile());
 
-		flightSearchService.loadDataFromfile(file);
+		flightService.loadDataFromfile(file);
 
-		for (Flight item : flightSearchService.getDatabase().values()) {
+		for (Flight item : flightService.getDatabase().values()) {
 			System.out.println(item);
 		}
 
-		Assert.assertEquals("Tamaño de datos", 89, flightSearchService.getDatabase().keySet().size());
+		Assert.assertEquals("Size of list", 89, flightService.getDatabase().keySet().size());
 	}
 
 
