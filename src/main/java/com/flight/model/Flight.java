@@ -1,7 +1,5 @@
 package com.flight.model;
 
-import java.math.BigDecimal;
-
 /**
  * Flight info
  * 
@@ -33,7 +31,7 @@ public class Flight {
 	/**
 	 * Base price of the flight
 	 */
-	private BigDecimal basePrice;
+	private Float basePrice;
 
 	/**
 	 * 
@@ -42,7 +40,7 @@ public class Flight {
 	 * @param airline
 	 * @param basePrice
 	 */
-	public Flight(String code, Airport origin, Airport destination, Airline airline, BigDecimal basePrice) {
+	public Flight(String code, Airport origin, Airport destination, Airline airline, Float basePrice) {
 		super();
 		this.code = code;
 		this.origin = origin;
@@ -52,11 +50,11 @@ public class Flight {
 	}
 	
 	public Flight(String code, Airport origin, Airport destination, Airline airline, int basePrice) {
-		this(code, origin, destination, airline, new BigDecimal(basePrice));
+		this(code, origin, destination, airline, Float.valueOf(basePrice));
 	}
 
 	public Flight(String code, Airport origin, Airport destination, Airline airline, String basePrice) {
-		this(code, origin, destination, airline, new BigDecimal(basePrice));
+		this(code, origin, destination, airline, Float.valueOf(basePrice));
 	}
 	
 	public Airport getOrigin() {
@@ -83,11 +81,11 @@ public class Flight {
 		this.airline = airline;
 	}
 
-	public BigDecimal getBasePrice() {
+	public Float getBasePrice() {
 		return basePrice;
 	}
 
-	public void setBasePrice(BigDecimal basePrice) {
+	public void setBasePrice(Float basePrice) {
 		this.basePrice = basePrice;
 	}
 

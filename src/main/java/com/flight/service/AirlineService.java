@@ -62,7 +62,7 @@ public class AirlineService {
 		item = new Airline("TK", "Turkish Airlines", 5);
 		itemList.add(item);
 		
-		item = new Airline("U2", "Easyjet", 19.90);
+		item = new Airline("U2", "Easyjet", 19.90f);
 		itemList.add(item);
 		
 		this.loadData(itemList);

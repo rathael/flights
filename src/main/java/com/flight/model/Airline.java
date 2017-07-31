@@ -1,7 +1,5 @@
 package com.flight.model;
 
-import java.math.BigDecimal;
-
 /**
  * Airline
  * 
@@ -23,9 +21,9 @@ public class Airline {
 	/**
 	 * Fixed price to infants
 	 */
-	private BigDecimal infantPrice;
+	private Float infantPrice;
 	
-	public Airline(String iataCode, String name, BigDecimal infantPrice) {
+	public Airline(String iataCode, String name, Float infantPrice) {
 		super();
 		this.code = iataCode;
 		this.name = name;
@@ -33,11 +31,7 @@ public class Airline {
 	}
 	
 	public Airline(String iataCode, String name, int infantPrice) {
-		this(iataCode, name, new BigDecimal(infantPrice));
-	}
-	
-	public Airline(String iataCode, String name, double infantPrice) {
-		this(iataCode, name, new BigDecimal(infantPrice));
+		this(iataCode, name,  Float.valueOf(infantPrice));
 	}
 
 	/**
@@ -68,11 +62,11 @@ public class Airline {
 	 * Fixed price to infants
 	 * @return
 	 */
-	public BigDecimal getInfantPrice() {
+	public Float getInfantPrice() {
 		return infantPrice;
 	}
 
-	public void setInfantPrice(BigDecimal infantPrice) {
+	public void setInfantPrice(Float infantPrice) {
 		this.infantPrice = infantPrice;
 	}
 

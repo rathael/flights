@@ -1,23 +1,21 @@
 package com.flight.model;
 
-import java.math.BigDecimal;
-
 public class BookFlight {
 
 	private Flight flight;
 	
-	private BigDecimal totalCost;
+	private Float totalCost;
 	
-	public BookFlight(Flight flight, BigDecimal totalCost) {
+	public BookFlight(Flight flight, Float totalCost) {
 		this.flight = flight;
 		this.totalCost = totalCost;
 	}
 
-	public BigDecimal getTotalCost() {
+	public Float getTotalCost() {
 		return totalCost;
 	}
 
-	public void setTotalCost(BigDecimal totalCost) {
+	public void setTotalCost(Float totalCost) {
 		this.totalCost = totalCost;
 	}
 
